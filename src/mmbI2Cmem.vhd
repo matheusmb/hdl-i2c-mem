@@ -1,5 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
+use work.memI2cPkg.all;
+
 -- PIN DESCRIPTION
 -- scl: The SCL input is used to positive
 --edge clock data into each EEPROM device and negative
@@ -39,7 +41,16 @@ end mmbi2c;
 architecture behavoral of mmbi2c is
 	alias A0 is addr(0);
 	alias A1 is addr(1);
+	
+	signal 	s_start_stop	:	std_logic;
 begin
+	
+	block1: start_stop_logic
+		port map(scl        => scl,
+			     sda        => sda,
+			     start_stop => s_start_stop);
+			    
+		    
 
 
 end behavoral;
