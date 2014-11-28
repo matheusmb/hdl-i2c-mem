@@ -43,13 +43,28 @@ architecture behavoral of mmbi2c is
 	alias A1 is addr(1);
 	
 	signal 	s_start_stop	:	std_logic;
+	
+	signal s_load			:	std_logic;
+	signal s_rw				:	std_logic;
+	signal s_comp			:	std_logic;
 begin
 	
-	block1: start_stop_logic
+	Start_Stop: start_stop_logic
 		port map(scl        => scl,
 			     sda        => sda,
 			     start_stop => s_start_stop);
-			    
+			     
+	Device_Addr: device_addr_comparator 
+		port map(
+			scl  => scl,
+			sda  => sda,
+			a1   => a1,
+			a0   => a0,
+			load => s_load,
+			comp => s_comp,
+			rw   => s_rw
+		);
+				    
 		    
 
 
