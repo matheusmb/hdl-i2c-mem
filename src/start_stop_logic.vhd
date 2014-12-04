@@ -29,6 +29,8 @@ begin
 				sig_st_stp <= '0';
 			end if;
 			
+		else
+			sig_st_stp <= 'Z';
 		end if;
 
 		

@@ -6,11 +6,15 @@ end tb_start_stop_logic;
 
 architecture tb of tb_start_stop_logic is
 
-    component start_stop_logic
-        port (scl        : in std_logic;
-              sda        : in std_logic;
-              start_stop : out std_logic);
-    end component;
+    component mmbI2Cmem is
+	port
+	(
+		addr	:	in		std_logic_vector(1 downto 0) := "00"; -- Address Inputs
+		sda		:	inout	std_logic; -- Serial Data
+		scl		:	in		std_logic; -- Serial Clock Input
+		wp 		:	in		std_logic -- Write Protect
+	);
+end mmbI2Cmem;
 
     signal scl        : std_logic := '0';
     signal sda        : std_logic;
